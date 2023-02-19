@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% load  template_tag %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquire Technology Limited</title>
+    <!--====== Bootstrap ======-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!--====== Font Awesome ======-->
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/all.min.css' %}">
+    <!--====== Flaticon ======-->
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/flaticon.css' %}">
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.min.css' %}">
+    <!--====== Slick Slider ======-->
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <!--====== Nice Select  ======-->
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+    <!--====== Main Stylesheet ======-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--====== Responsive Stylesheet ======-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Place favicon in the root directory -->
+    <link rel="icon" type="image/png" href="{% static 'img/favicon1.png' %}">
+</head>
+
+<body>
+    <!--======= Start Preloader =======-->
+    <div class="preloader">
+        <img class="preloader-image" width="60" src="{% static 'img/favicon1.png' %}" alt="preloader" >
+        <!-- <img class="preloader-image" width="60" src="assets/img/feature/service-icon-4.png" alt="preloader"/> -->
+    </div> <!-- /.preloader -->
+    <!--======= End Preloader =======-->
+    <!--====== Start Search From ======-->
+    <!-- /#search-modal -->
+    <!--======= End Search Form =======-->
+    <!--====== Start Header Area ======-->
+    <header class="header-area header-v4" style="padding-bottom:8%;">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Brand Logo -->
+                    <div class="col-xl-4 col-md-6 col-8">
+                        <div class="site-branding-and-language-selection">
+                            <div class="brand-logo">
+                                <a href="{% url 'home' %}">
+                                    {% for data in head_foot|head_foots|slice:"1" %}
+                                    <img src="/{{data.logo}}"class alt="logo" style="width:40%;height:40%;">
+                                    {% endfor %}
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Desktop and Mobile Menu -->
+                    <div class="col-xl-8 col-md-6 col-4 text-center">
+                        <div class="primary-menu d-flex justify-content-end align-items-center">
+                            <div class="nav-menu">
+                                <!-- Navbar Close Icon -->
+                                <div class="navbar-close">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+                                <nav class="main-menu">
+                                    <ul>
+                                        <li class="menu-item menu-item-has-children">
+                                            <a href="{% url 'about_us' %}" class="nav-link">About</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="{% url 'about_us' %}">Who We Are</a></li>
+                                                <li><a href="{% url 'career' %}">Career</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item menu-item-has-children">
+                                            <a href="{% url 'products' %}" class="nav-link">We Offer</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="{% url 'products' %}">Products</a></li>
+                                                <li><a href="{% url 'services' %}">Our Services</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header-right">
+                                <ul>
+                                    <li>
+                                        <div class="menu-toggle">
+                                            <div class="menu-overlay"></div>
+                                            <!-- Navbar Toggler -->
+                                            <div class="nav-toggle">
+                                                <div class="navbar-toggler float-end">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.container-fluid -->
+        </div> <!-- /.header-navigation -->
+    </header> <!-- /.header-area -->
+    <!--====== End Header Area ======-->
+    {% block body %}
+    {% endblock %}
+
+     <!--====== Start Footer Area ======-->
+     <footer class="footer-area footer-area-v3">
+        <div class="container">
+            <div class="footer-area-internal border-bottom-purple">
+                <div class="row">
+                    <!-- Single Footer Widget -->
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="single-footer-widget footer-text-widget">
+                            <h5 class="widget-title">Our Address</h5>
+                            {% for data in head_foot|head_foots|slice:"1" %}
+                            <p>{{company_details.last.convert_to_list.0}}
+                                <br>{{company_details.last.convert_to_list.1}}
+                                <br>{{company_details.last.convert_to_list.2}}
+                                <br>{{company_details.last.convert_to_list.3}}
+                            </p>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <!-- Single Footer Widget -->
+                    <div class="col-lg-6 col-md-6 wow fadeInUp" style="padding-left: 10%;" data-wow-delay="0.3s">
+                        <div class="single-footer-widget">
+                            <h5 class="widget-title">Resources</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><a href="{% url 'home' %}">Home</a></li>
+                                        <li><a href="{% url 'about_us' %}">About</a></li>
+                                        <li><a href="{% url 'products' %}">Products</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><a href="{% url 'career' %}">Career</a></li>
+                                        <li><a href="{% url 'services' %}">Services</a></li>
+                                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="single-footer-widget follow-on-widget">
+                            <h5 class="widget-title">Social Links</h5>
+                            <div class="footer-social-links">
+                                <ul>
+                                    <li><a href="https://www.facebook.com/esquireTechnology/" target="_blank"><i
+                                                class="fab fa-facebook-f"></i></a></li>
+
+                                    <li><a href="https://bd.linkedin.com/company/esquire-technology-ltd"
+                                            target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div><!-- /.footer-area-internal -->
+        </div> <!-- /.container -->
+        <div class="footer-copyright-area wow fadeInDown" data-wow-delay="0.8s">
+            <div class="container">
+                <div class="row footer-copyright" style="justify-content: space-between;">
+                    <div class="footer-copyright text-center">
+                        <p>© <a href="{% url 'home' %}">Esquire Technology Limited.</a> All Rights Reserved</p>
+                     
+                    </div>
+                    
+                    <a href="https://esquire.com.bd/" target="_blank">
+                       
+                        <span class="footer-copyright pr-2">Concern of</span><img src="{% static 'img/about/esquire-group-logo.png' %}" alt="esquire-group-logo.png" style="max-width: 13%;">
+                    </a>
+                    
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.footer-copyright-area -->
+    </footer> <!-- /.footer-area -->
+    <!--====== End Footer Area ======-->
+    <!--======= Scroll To Top =======-->
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+    <!--====== Optional Javascript ======-->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <!--====== Popper JS ======-->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!--====== Bootstrap JS ======-->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!--====== Slick Slider JS ======-->
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <!--====== Wow JS ======-->
+    <script src="{% static 'js/wow.js' %}"></script>
+    <!--====== Nice Select ======-->
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <!--====== Counter Up JS ======-->
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <!--====== Magnific Popup JS ======-->
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <!--====== Waypoint JS ======-->
+    <script src="{% static 'js/jquery.waypoints.js' %}"></script>
+    <!--====== Main Script ======-->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/63e9b5fe474251287912f6bf/1gp4etr15';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+
+</html>
+

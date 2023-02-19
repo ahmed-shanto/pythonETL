@@ -1,0 +1,205 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block body %}
+{% load  template_tag %}
+
+ <!--====== Start Search From ======-->
+ <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" style="padding-top: 5%;"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content p-0 m-0">               
+            <div class="p-0 mt-3" >
+                <div class="row">
+                    <div class="col-md-11 text-center">  <h4 style="color:#f4732a;" class="text-center">Apply Form</h4> </div>
+                    <div class="col-md-1 p-0"> <a class="btn p-0 text-left" data-dismiss="modal"><b><i class="fa fa-times fa-lg" aria-hidden="true" style="font-size:1em;"></i></b></a></div>
+                </div>
+            </div>            
+            <div class="contact-respond pt-3">               
+                <form method="POST" class="job-form"  id="job-form" enctype="multipart/form-data">
+                    
+                    
+
+                    {% csrf_token %}
+                    <h6 class=" pb-4">Apply Now</h6>
+                    <input type="hidden" class="form-control" id="job_id" name="job_id" value="" >
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="name" placeholder="Name"
+                            name="name" required style="height: 50px;">
+                        <label for="maintain_name">Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email"  class="form-control" id="email" placeholder="Email"
+                            name="email" required style="height: 50px;">
+                        <label for="maintain_email">Email</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="phoneNumber" class="form-control" id="phone" placeholder="Phone"
+                            name="phone" required style="height: 50px;">
+                        <label for="maintain_phone">Phone</label>
+                    </div>
+                    <!-- <div class="input-group">
+                        <label for="maintain_message">Message</label>
+                        <input class="form-control" type="file" id="resume" name="resume" >
+                    </div> -->
+                    
+                    <div class="" style="padding-bottom: 5%;">
+                        <label for="formFile" class="form-label">CV/Resume</label>
+                        <input class="form-control" name="resume" type="file" id="resume" required accept=".pdf, .docx, .doc">
+                        <label for="formFile" class="form-label">Allowed Type(s): .pdf or .docx</label>
+                      </div>
+
+                    <div class="input-group get-started-wrapper pb-3" style="justify-content: center">
+                        <!-- <a href="maintenance.html" class="filled-btn bg-burning-orange" onclick="modalSubmit()"> -->
+                
+                            <button type="submit" name="submit" id="submit" class="filled-btn bg-burning-orange" >
+                                Submit
+                            </button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div><!-- /#search-modal -->
+    <!--====== Start Breadcrumb Area ======-->
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="section-internal">
+                <div class="section-particle-effect d-none d-md-block section-particle-effect-v3">
+                    <img class="particle-1 animate-zoom-fade" src="{% static 'img/particle/particle-1.png' %}"
+                        alt="particle One">
+                    <img class="particle-2 animate-rotate-me" src="{% static 'img/particle/particle-2.png' %}"
+                        alt="particle Two">
+                    <img class="particle-3 animate-float-bob-x" src="{% static 'img/particle/particle-3.png' %}"
+                        alt="particle Three">
+                    <img class="particle-4 animate-float-bob-y" src="{% static 'img/particle/particle-4.png' %}"
+                        alt="particle Four">
+                    <img class="particle-5 animate-float-bob-y" src="{% static 'img/particle/particle-5.png' %}"
+                        alt="particle Five">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="page-title wow fadeInDown" data-wow-delay="0.1s" data-wow-duration="1500ms">
+                                <h2>Career</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.section-internal -->
+        </div> <!-- /.container -->
+    </section> <!-- /.breadcrumb-area -->
+    <!--====== End Breadcrumb Area ======-->
+    <!--====== Start Our Services Area ======-->
+    <section class="our-services" style="padding-top:8%;padding-bottom:8%;">
+        <div class="container">
+            <div class="our-services-content-wrapper">
+                <div class="col">
+                    <div class="section-title text-center mb-70 section-title-mirage">
+                        <!-- <div class="section-heading-tag">
+                            <span class="single-heading-tag">Feature Products</span>
+                        </div> -->
+                        <h2><span>Vacancies</span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Single Feature Box -->
+                    {% for i in vacancy %}
+                    <div class="col-md-12">
+                        <div class="pricing-table starter-plan wow fadeInUp" data-wow-delay="0ms"
+                            data-wow-duration="1500ms" style="padding: 19px 27px 17px 37px;">
+                            <div class="section-accordion">
+                                <div class="accordion" id="accordionFAQ">
+                                    <div class="accordion-item">
+                                        <p class="accordion-header" id="headingOne">
+                                            <button class="accordion-button new collapsed custom" type="button" 
+                                                data-toggle="collapse" data-target="#collapse_{{forloop.counter}}" aria-expanded="false"
+                                                aria-controls="collapseOne" style="content: none!important;">
+                                                <div class="feature-box-content">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <h4  class="text-nowrap pb-4" style="color:#f4732a" id="job_name">{{i.name}}</h4>
+                                                    
+                        
+                                                            <ul>
+                                                                <li><i class="fa fa-map-marker" aria-hidden="true" style="color:#f4732a" title="Job Location"></i> <span style="color:#6e727d;font-size: medium;padding-left: 8%;" >{{i.place}}</span></li>
+                                                                <li class="text-nowrap"><span style="color:#f4732a"  title="Salary">&#2547; </span><span style="color:#6e727d;font-size: medium;padding-left: 9%;">{{i.salary}}</span></li>
+                                                                <li class="text-nowrap"><i class="fa fa-hourglass" style="color:#f4732a" title="Deadline"></i> <span style="color:#6e727d;padding-left: 6%;font-size: medium;">{{i.date}}</span></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <h4  class="text-white pb-4">{{i.name}}</h4>
+                                                            <ul>
+                                                                <li></li>
+                                                                <li><i class="fa fa-check-square" aria-hidden="true" style="color:#f4732a" title="Job Type"></i><span style="color:#6e727d;font-size: medium;padding-left: 8%;" >{{i.type}}</span></li>
+                                                                <li class="text-nowrap"><i class="fa fa-credit-card" aria-hidden="true" style="color:#f4732a"  title="Experience"></i> <span style="color:#6e727d;font-size: medium;padding-left: 6%;">{{i.experience}}</span></li>
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </p>
+                                        <div id="collapse_{{forloop.counter}}" class="collapse pt-1" aria-labelledby="headingOne"
+                                            data-parent="#accordionFAQ">
+                                            <div class="accordion-body">
+                                                <div class="text-left mt-4">
+                                                    {{i.description|safe}}
+                                                </div>
+                                                <div class="row pb-3">
+                                                    <div class="offset-md-5 col-md-7" style="color:#f4732a; padding-top: 5%;">
+                                                        <button type="button" id="{{i.id}}" class="filled-btn bg-burning-orange btnApply"  style="padding-top: 5% align: center;">Apply Now
+                                                        </button>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                
+                    <marquee behavior="" direction="" scrollamount="15"><h2 style=" text-align: center; color: #14597B;">Sorry, No Jobs Aviable Now.</h2></marquee>
+                    {% endfor %}
+                </div> <!-- /.row -->
+            </div> <!-- /.our-services-content-wrapper -->
+        </div> <!-- /.container -->
+    </section> <!-- /.our-services -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <script>
+        
+        $('#job-form').on('submit', function(event) {
+          event.preventDefault();
+          var formData = new FormData($(this)[0]);
+          $.ajax({
+            url: "{% url 'career'  %}",
+            type: 'post',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                swal("Your Application Has Been Submitted Successfully!", "Our HR Team Will Evaluate And Contact You Soon", "success")
+                $("#job-form")[0].reset();
+            },
+            error: function(error) {
+              swal("Something went wrong!", "Please try again!", "error")
+            }
+          });
+        });
+
+    
+    $('.btnApply').click(function() { 
+        $("#job_id").val(this.id);
+        $("#search-modal").modal("show");
+    });
+
+    </script>
+    
+{% endblock %}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% extends 'website/base.html' %}
+{% load static %}
+{% block body %}
+{% load  template_tag %}
+        <!--====== Start Search From ======-->
+        <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" style="padding-top: 5%;"  data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content p-0 m-0">               
+                    <div class="p-0 mt-3" >
+                        <div class="row">
+                            <div class="col-md-11 text-center">  <h4 style="color:#f4732a;" class="text-center">Contact Form</h4> </div>
+                            <div class="col-md-1 p-0"> <a class="btn p-0 text-left" data-dismiss="modal"><b><i class="fa fa-times fa-lg" aria-hidden="true" style="font-size:1em;"></i></b></a></div>
+                        </div>
+                    </div>            
+                    <div class="contact-respond pt-3">               
+                        <form method="POST" class="form" id="form">
+                            {% csrf_token %}
+                            <h6 class=" pb-4" style="text-transform: capitalize;">Query For : {{name}}</h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="name" placeholder="Name"
+                                    name="name" required style="height: 50px;">
+                                <label for="maintain_name">Name</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="email" placeholder="Email"
+                                    name="email" required style="height: 50px;">
+                                <label for="maintain_email">Email</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="phone" placeholder="Phone"
+                                    name="phone" required style="height: 50px;">
+                                <label for="maintain_phone">Phone</label>
+                            </div>
+                            <div class="input-group form-textarea">
+                                <textarea class="form-control" id="message" placeholder="Message"
+                                    name="maintain_message" style="height: 150px;padding-left:2%"></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                            
+                            <div class="input-group get-started-wrapper pb-3" style="justify-content: center">
+                                <!-- <a href="maintenance.html" class="filled-btn bg-burning-orange" onclick="modalSubmit()"> -->
+                                   
+                                 
+                                        <button type="submit" name="submit" id="submit" class="filled-btn bg-burning-orange" >
+                                            Submit  
+                                        </button>
+                                    </i>
+                               
+                            </div>
+                        </form>
+                    </div>
+                </div> <!-- /.modal-content -->
+            </div> <!-- /.modal-dialog -->
+        </div><!-- /#search-modal -->
+        <!--====== Start Breadcrumb Area ======-->
+        <section class="breadcrumb-area">
+            <div class="container">
+                <div class="section-internal">
+                    <div class="section-particle-effect d-none d-md-block section-particle-effect-v3">
+                        <img class="particle-1 animate-zoom-fade" src="{% static 'img/particle/particle-1.png' %}" alt="particle One">
+                        <img class="particle-2 animate-rotate-me" src="{% static 'img/particle/particle-2.png' %}" alt="particle Two">
+                        <img class="particle-3 animate-float-bob-x" src="{% static 'img/particle/particle-3.png' %}" alt="particle Three">
+                        <img class="particle-4 animate-float-bob-y" src="{% static 'img/particle/particle-4.png' %}" alt="particle Four">
+                        <img class="particle-5 animate-float-bob-y" src="{% static 'img/particle/particle-5.png' %}" alt="particle Five">
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="breadcrumb-content text-center">
+                                <div class="page-title wow fadeInDown" data-wow-delay="0.1s" data-wow-duration="1500ms">
+                                    <h2 style="text-transform: capitalize;">{{name}}</h2>
+                                </div>
+                                <div class="section-heading-tag">
+                                    {% for t in filter_data %}
+                                    <span class="single-heading-tag" style="color:#f4732a">{{t.title|safe}}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /.row -->
+                </div> <!-- /.section-internal -->
+            </div> <!-- /.container -->
+        </section> <!-- /.breadcrumb-area -->
+        <!--====== End Breadcrumb Area ======-->
+        <!--====== Start Service Details Area ======-->
+        <section class="our-services" style="padding-top:8%;padding-bottom:8%;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="section-title mb-135 text-center section-title-tuna">
+                            <h2 style="text-transform: capitalize;"> Amazing Benifits of <br class="d-none d-md-block" >{{name }} Software  </h2>
+                        </div>
+                    </div>
+                </div>
+               
+
+                   
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <div class="section-right-image text-center animate-float-bob-y wow fadeInDown" data-wow-delay="0ms" data-wow-duration="2000ms">
+                            {% for p in filter_data %}
+                            <img src="/{{p.photo_one}}" alt="service left thumbnail">
+                            {% endfor %}
+                        </div>
+                        <div class="plan-select pt-3 text-center">
+                            <a href="#" class="filled-btn" data-toggle="modal" data-target="#search-modal">Contact Us <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+
+                    </div>
+                    {% comment %} <div class="col-lg-7">
+                        <div class="icon-boxes-wrapper icon-boxes-grid">
+                            {% for p in filter_data %}
+                            <input type="hidden" class="form-control" id="module_id" name="module_id" value="{{p.id}}">
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{p.description_one|safe}}</h5>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div> {% endcomment %}
+                    {% for p in filter_data %}
+                    <div class="col-lg-7">
+                        <div class="icon-boxes-wrapper icon-boxes-grid">
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{p.benifits_one}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{p.benifits_two}}</h5>
+                                </div>
+                            </div>
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{p.benifits_three}} </h5>
+                                </div>
+                            </div>
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">
+                                        {{p.benifits_four}}</h5>
+                                </div>
+                            </div>
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{p.benifits_five}}</h5>
+                                </div>
+                            </div>
+
+
+
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{p.benifits_six}} </h5>
+                                </div>
+                            </div>
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">
+                                        {{p.benifits_seven}}</h5>
+                                </div>
+                            </div>
+                            <div class="single-iconic-box iconic-box-v2">
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{p.benifits_eight|safe}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div> <!-- /,row -->
+            </div> <!-- /.container -->
+        </section> 
+   
+        <section class="design-feature-area overflow-hidden bg-alice-blue" style="padding-top:8%;padding-bottom:8%;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 order-2 order-lg-1">
+                        <div class="section-title section-title-mirage">
+                            <div class="section-heading-tag">
+                                <span class="single-heading-tag">User Friendly Features of </span>
+                            </div>
+                            <h2 style="text-transform: capitalize;"><span>{{name}}</span></h2>
+                          
+                            <div class="section-list-style list-style-v2">
+                                {% for p in filter_data %}
+                                <ul>
+                            <input type="hidden" class="form-control" id="module_id" name="module_id" value="{{p.id}}">
+                            {{p.description_two|safe}}
+                                </ul>
+                                {% endfor %}
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-7 order-1 order-lg-2">
+                        <div class="app-preview-image text-center text-lg-right content-left-spacer">
+                            <div class="app-feature-preview-main animate-float-bob-y wow fadeInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
+                                {% for p in filter_data %}
+                                <img src="/{{p.photo_two}}" alt="connect team one"  height="1000"
+                                width="1000">
+                                {% endfor %}
+                            </div>
+                            <!-- <div class="app-feature-preview-absolute animate-float-bob-x wow fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
+                                <img src="assets/img/products/garments/scan.jpg" alt="connect team two">
+                            </div> -->
+                        </div>
+                        <!-- assets/img/products/productions-details1.jpg -->
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </section> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    >
+
+    <script>
+        $(document).ready(function(){
+          $("#form").submit(function(e){
+            var name = $('#name').val()
+            var module_id = $('#module_id').val()
+            var email = $('#email').val()
+            var phone = $('#phone').val()
+            var message = $('#message').val()
+            e.preventDefault();
+    
+        
+            $.ajax({
+              type: "POST",
+              url: '/module/{{name}}/',
+              data: {
+                name:name,
+                module_id:module_id,
+                email:email,
+                phone:phone,
+                message:message,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+              },
+              success: function(response){
+                swal("Your Message Sent Successfully!", "Soon We Will Reach You!", "success")
+                $("#form")[0].reset();
+              },
+              error: function(response){
+                swal("Something went wrong!", "Please try again!", "error")
+                
+
+              }
+            });
+          });
+        });
+        </script>
+{% endblock %}

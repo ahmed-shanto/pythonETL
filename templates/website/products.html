@@ -1,0 +1,182 @@
+
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+    {% load  template_tag %}
+        <!--====== Start Breadcrumb Area ======-->
+        <section class="breadcrumb-area">
+            <div class="container">
+                <div class="section-internal">
+                    <div class="section-particle-effect d-none d-md-block section-particle-effect-v3">
+                        <img class="particle-1 animate-zoom-fade" src="{% static 'img/particle/particle-1.png' %}" alt="particle One">
+                        <img class="particle-2 animate-rotate-me" src="{% static 'img/particle/particle-2.png' %}" alt="particle Two">
+                        <img class="particle-3 animate-float-bob-x" src="{% static 'img/particle/particle-3.png' %}" alt="particle Three">
+                        <img class="particle-4 animate-float-bob-y" src="{% static 'img/particle/particle-4.png' %}" alt="particle Four">
+                        <img class="particle-5 animate-float-bob-y" src="{% static 'img/particle/particle-5.png' %}" alt="particle Five">
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="breadcrumb-content text-center">
+                                <div class="page-title wow fadeInDown" data-wow-delay="0.1s" data-wow-duration="1500ms">
+                                    <h2>Products</h2>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div> <!-- /.row -->
+                </div> <!-- /.section-internal -->
+            </div> <!-- /.container -->
+        </section> <!-- /.breadcrumb-area -->
+        <!--====== End Breadcrumb Area ======-->
+        <!--====== Start Service Details Area ======-->
+
+        {% for i in product %}
+        
+        <section class="service-details-wrapper pt-125">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="service-details-content">
+                            <div class="col">
+                                <div class="section-title text-center mb-70 section-title-mirage">
+                                    <div class="section-heading-tag">
+                                        <span class="single-heading-tag">Feature Products</span>
+                                    </div>
+                                    
+                                    <h2> <a href="{{i.website_link}}" target="_blank"><span>{{i.title}}</span></a> </h2>
+                                    
+                                </div>
+                            </div>
+                         
+                           
+                            <div class="image-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>{{i.description}}</p>
+                                    </div>
+                                    <div class="col-md-6" style="vertical-align: top;">
+                                        <div class="animate-square-zoom wow fadeInDown" data-wow-delay="200ms" data-wow-duration="1500ms">
+                                            <img src="/{{i.image}}" alt="service details image"  style="vertical-align: top;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </section> <!-- /.service-details-wrapper -->
+        {% endfor %}
+
+
+        {% for p in product_name %}
+        <section class="our-team-area our-team-area-v2 pt-130 pb-100" style="background-image: url({% static  'img/services/dots-pattern-bg.png'%});">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="section-title section-title-mirage text-center mb-70">
+                            <div class="section-heading-tag">
+                                <span class="single-heading-tag">Our Products</span>
+                            </div>
+                          
+                            <h2> <span>{{p.name_with_title}}</span> </h2>
+                        </div>
+                    </div> <!-- /.col-lg-8 -->
+                </div> <!-- /.row -->
+                <div class="team-member-content">
+                    <div class="row">
+                        {% for m in p.modules.all %}
+                        <div class="col-lg-3 col-md-6" >
+                          
+                            <div class="blog-post-item blog-post-item-v3 post-type-featured-absolute" >
+                                <a href="{% url 'module' m.name|str2url|lower%}" style="display: block; height:243px;width:255px">
+                                    <div class="post-thumbnail"  style="height:60px;width:300px;">
+                                            <div class="post-thumbnail-bg" style="background-image: url(/{{m.bg_image}});" ></div>
+                                    </div>
+                                    <div class="blog-post-entry-content" style="padding: 35px 30px 30px 30px;"> 
+                                        <h1 class="post-title">{{m.name}}</h1>    
+                                                                    
+                                    </div>
+                                </a>
+                            </div> 
+                        </div>
+                        {% endfor %}
+                    </div> <!-- /.row -->
+
+                </div> <!-- /.team-member-content -->
+            </div> <!-- /.container -->
+        </section>
+        {% endfor %}
+
+        <!--====== End Service Details Area ======-->
+        <section class="service-details-wrapper pt-125 pb-95">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="service-details-content">
+                         
+                            <h3 class="faq-accordion-title">Frequently Asked Quesations</h3>
+                           
+                            <div class="customer-faq">
+                                <div class="row align-items-center">
+                                    {% for q in product_qa %} 
+                                        {% if forloop.counter|divisibleby:2 %} 
+                                        <div class="col-lg-6">
+                                            <div class="section-accordion section-accordion-v2">
+                                            
+                                                <div class="accordion" id="accordionFAQ">
+                                                    <div class="accordion-item">
+                                                        <h5 class="accordion-header" id="headingOne">
+                                                            <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="false" aria-controls="collapseOne">
+                                                            {{q.question}}
+                                                            </button>
+                                                        </h5>
+                                                        <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFAQ">
+                                                            <div class="accordion-body">
+                                                                <p>{{q.answer}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /.accordion -->
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                        <div class="col-lg-6">
+                                            <div class="section-accordion section-accordion-v2">
+                                        
+                                                <div class="accordion mt-4" id="accordionFAQOne">
+                                                    <div class="accordion-item">
+                                                        <h5 class="accordion-header" id="headingFive">
+                                                            <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="false" aria-controls="collapseOne">
+                                                                {{q.question}}
+                                                            </button>
+                                                        </h5>
+                                                        <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="headingFive" data-parent="#accordionFAQ">
+                                                            <div class="accordion-body">
+                                                                <p>{{q.answer}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div> <!-- /.accordion -->
+                                            </div> <!-- /.section-accordion -->
+                                        </div> 
+                                        {% endif %} 
+                                    {% endfor %}
+                                </div>
+                            </div> <!-- /.customer-faq -->
+                           
+                            <blockquote>
+                           {{static_files.last.product_QA_desc}}
+                            </blockquote>
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </section>
+        <!--====== Start Subscribe Newsletter Area ======-->
+        <!-- /.subscribe-newsletter-area -->
+        <!--====== End Subscribe Newsletter Area ======-->
+        <!--====== Start Footer Area ======-->
+   {% endblock %}

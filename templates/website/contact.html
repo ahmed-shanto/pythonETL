@@ -1,0 +1,156 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block body %}
+    <!--====== Start Breadcrumb Area ======-->
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="section-internal">
+                <div class="section-particle-effect d-none d-md-block section-particle-effect-v3">
+                    <img class="particle-1 animate-zoom-fade" src="{% static 'img/particle/particle-1.png' %}"
+                        alt="particle One">
+                    <img class="particle-2 animate-rotate-me" src="{% static 'img/particle/particle-2.png' %}"
+                        alt="particle Two">
+                    <img class="particle-3 animate-float-bob-x" src="{% static 'img/particle/particle-3.png' %}"
+                        alt="particle Three">
+                    <img class="particle-4 animate-float-bob-y" src="{% static 'img/particle/particle-4.png' %}"
+                        alt="particle Four">
+                    <img class="particle-5 animate-float-bob-y" src="{% static 'img/particle/particle-5.png' %}"
+                        alt="particle Five">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="breadcrumb-content text-center">
+                            <div class="page-title wow fadeInDown" data-wow-delay="0.2s" data-wow-duration="2500ms">
+                                <h2>Contact Us</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.section-internal -->
+        </div> <!-- /.container -->
+    </section> <!-- /.breadcrumb-area -->
+    <!--====== End Breadcrumb Area ======-->
+    <!--====== Start Contact Area ======--> 
+    <section class="contact-area" style="margin-top: 7%;margin-bottom: 7%;">
+        <div class="container">
+            <div class="col">
+                <div class="section-title text-center section-title-mirage">
+                    <h2><span>Get Into Touch</span></h2>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <!-- style="margin-top: 10%;" -->
+                <div class="col-lg-5" style="margin-top: 7%;">
+                    <div class="contact-area-content content-right-spacer">
+                        <div class="info-iconic-boxes">
+                            <div class="info-iconic-box wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="1500ms">
+                                <div class="info-icon info-icon-gradient-1">
+                                    <i class="fal fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-body">
+                                    <h5>Our Location</h5>
+                                    <p>{{company_details.last.convert_to_list.0}}
+                                         <br>{{company_details.last.convert_to_list.1}}
+                                         <br>{{company_details.last.convert_to_list.2}}
+                                         <br>{{company_details.last.convert_to_list.3}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="info-iconic-box wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1500ms">
+                                <div class="info-icon info-icon-gradient-2">
+                                    <i class="fal fa-envelope-open-text"></i>
+                                </div>
+                                <div class="info-body">
+                                    <h5>Email Address</h5>
+                                    <p><a href="mailto:{{company_details.last.email}}">{{company_details.last.email}}</a></p>
+                                </div>
+                            </div>
+                            <div class="info-iconic-box wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1500ms">
+                                <div class="info-icon info-icon-gradient-3">
+                                    <i class="fal fa-phone"></i>
+                                </div>
+                                <div class="info-body">
+                                    <h5>Urgent Call</h5>
+                                    <p><a href="tel:{{company_details.last.phone}}">{{company_details.last.phone}}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" style="vertical-align:top;align-items:flex-start;">
+                    <div class="contact-form-area content-right-spacer m-0 p-0">
+                        <div class="contact-respond m-0 p-0">
+                            <form style="vertical-align:top;align-items:flex-start;" method="POST" class="form" id="form">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name"
+                                        required>
+                                    <label for="fullName">Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="phone" placeholder="Phone"
+                                        name="phone" required>
+                                    <label for="phoneNumber">Phone</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="email" class="form-control" id="email" placeholder="Email"
+                                        name="email" required>
+                                    <label for="emailAddress">Email</label>
+                                </div>
+                                <div class="input-group form-textarea">
+                                    <textarea class="form-control" id="message" placeholder="Message" name="message"
+                                        style="padding-left:2%;" required></textarea>
+                                    <label for="message">Message</label>
+                                </div>
+                                <div class="input-group">
+                                    <button type="submit" class="filled-btn" name="submit" id="submit">Send Message <i
+                                            class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div> <!-- /.contact-respond -->
+                    </div> <!-- /.contact-form-area -->
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </section> <!-- /.contact-area -->
+    <!--====== End Contact Area ======-->
+    <!--====== Start Map Area ======-->
+    <div class="map-area wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+        <div class="map-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.820945658688!2d90.4002062!3d23.7537637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b89bad50e071%3A0xfeaa4cd92028b47e!2sEsquire%20Tower%2C%2021%20Shaheed%20Tajuddin%20Ahmed%20Ave%2C%20Dhaka%201208!5e0!3m2!1sen!2sbd!4v1666631678704!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div> <!-- /.map-box -->
+    </div> <!-- /.map-area -->
+    <!--====== End Map Area ======-->
+    <!--====== Start Footer Area ======-->
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+          $("#form").submit(function(e){
+            e.preventDefault();
+        
+            var formData = $(this).serialize();
+        
+            $.ajax({
+              type: "POST",
+              url: "{% url 'contact' %}",
+              data: formData,
+              success: function(response){
+                swal("Your Message Sent Successfully!", "Our Marketing Team Will Reach You Soon!", "success")
+                $("#form")[0].reset();
+              },
+              error: function(response){
+                swal("Something went wrong!", "Please try again!", "error")
+                
+
+              }
+            });
+          });
+        });
+        </script>
+   
+
+
+    {% endblock %}

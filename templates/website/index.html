@@ -1,0 +1,446 @@
+
+    {% extends 'website/base.html' %}
+    {% load static %}
+    {% block body %}
+    <section class="hero-area hero-v4 pb-0 mb-0" style="background-image: url({% static 'img/hero/hero-curve-bg.png' %});">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <div class="section-title section-title-mandy">
+                            <h1 class="wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1500ms"
+                                style="visibility: visible; animation-duration: 1500ms; animation-delay: 0.2s; animation-name: fadeInUp;color:#015178;">
+                                {{company_details.last.name}}</h1>
+                            <h4>{{company_details.last.title}}</h4>
+                        </div>
+                        <div class="section-particle-effect d-none d-lg-block">
+                            <img class="particle-1 animate-rotate-me" src="{% static 'img/particle/particle-2.png' %}"
+                                alt="particle One">
+                            <img class="particle-2 animate-float-bob-y" src="{% static 'img/particle/particle-3.png' %}"
+                                alt="particle Two">
+                            <img class="particle-3 animate-zoominout" src="{% static 'img/particle/particle-4.png' %}"
+                                alt="particle Three">
+                            <img class="particle-4 animate-float-bob-y" src="{% static 'img/particle/particle-5.png' %}"
+                                alt="particle Four">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6  pb-0 mb-0" style="margin-top:5%">
+                    <div class="chartboard-image-wrapper pb-0 mb-0">
+                        <img src="/{{company_details.last.banner1}}" style="width:70%;height:70%" alt="chartboard image one"
+                            class="chartboard-image chartboard-image-main wow fadeInDown animate-float-bob-x rounded-circle pb-0 mb-0"
+                            data-wow-delay="100ms" data-wow-duration="1500ms">
+                        <div class="chartboard-app-preview">
+                            <img src="/{{company_details.last.banner2}}"  style="width:70%;height:70%" alt="app preview one"
+                                class="chartboard-image chartboard-app-preview-1 wow fadeInDown rounded-circle pb-0 mb-0"
+                                data-wow-delay="500ms" data-wow-duration="1500ms">    
+                        </div>
+                    </div> <!-- /.chart-board-image-wrapper -->
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- .container -->
+    </section> <!-- /.hero-area -->
+    <!--====== End Hero Area ======-->
+    <!--====== Start Feature Area ======-->
+    <section class="features-area">
+        <div class="container">
+            <!-- pt-120 pb-75 -->
+            <div class="section-internal  border-bottom-purple" style="padding-top:8%;padding-bottom:8%;">
+                <div class="section-title mb-126 text-center section-title-mirage">
+                    <div class="section-heading-tag">
+                        <span class="single-heading-tag">{{static_files.last.home_features_title1}}</span>
+                    </div>
+                    <h2>{{static_files.last.home_features_title2}}</h2>
+                </div>
+                <div class="icon-boxes-wrapper">
+                    <div class="row">
+                        {% for e in exclusive_features %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-iconic-box iconic-box-v3 exclusive-iconic-box-1 wow fadeInUp"
+                                data-wow-delay="0.1s">
+                                <div class="iconic-box-icon">
+                                    <img src="/{{e.icon}}" style="width:70%;height:70%" alt="chartboard image one"
+                                    class="chartboard-image chartboard-image-main wow fadeInDown rounded-circle pb-0 mb-0"
+                                    data-wow-delay="100ms" data-wow-duration="1500ms">
+                               
+                                </div>
+                                <div class="iconic-box-body">
+                                    <h5 class="iconic-box-title">{{e.name}}</h5>
+                                    <p class="iconic-box-content">
+                                        {{e.short_desc}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div> <!-- /.row -->
+                </div> <!-- /.icon-boxes-wrapper -->
+            </div> <!-- /.section-internal -->
+        </div> <!-- /.container -->
+    </section> <!-- /.features-area -->
+    <!--====== End Feature Area ======-->
+    <!--====== Start Collaboration Area ======-->
+    <!-- pt-130 pb-130 -->
+    {% for h in home_features %}
+    {% if not forloop.counter|divisibleby:2 %} 
+    <section class="collaboration-area collaboration-area-v1" style="padding-top:8%;padding-bottom:8%;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 d-none d-lg-block" style="vertical-align:top;">
+                    <div class="app-preview-image  content-right-spacer">
+                        <div class="animate-float-bob-y wow fadeInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
+                            <img src="{{h.image}}" alt="chat activity">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="section-title section-title-mirage">
+                        <div class="section-heading-tag">
+                            <span class="single-heading-tag">{{h.title}}</span>
+                        </div>
+                        <h2 style="margin-bottom:40px;">{{h.name}}</h2>
+                        <div class="section-title-description">
+                            <p class="mb-13">{{h.short_desc|safe}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </section> <!-- /.collaboration-area -->
+    {% else %}
+
+    <section class="design-feature-area bg-alice-blue" style="padding-top:8%;padding-bottom:8%;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 order-2 order-lg-1">
+                    <div class="section-title section-title-mirage">
+                        <div class="section-heading-tag">
+                            <span class="single-heading-tag">{{h.title}} </span>
+                        </div>
+                        <h2 style="margin-bottom:40px;"><a href="{% url 'products' %}">{{h.name}}</a>
+                        </h2>
+                        <div class="section-title-description">
+                            <p>{{h.short_desc}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 order-1 order-lg-2  d-none d-lg-block" style="vertical-align:top;">
+                    <div class="app-preview-image ">
+                        <div class="animate-float-bob-y wow fadeInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
+                            <img src="{{h.image}}" alt="Software Development">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+    {% endif %} 
+    {% endfor %}
+    <!--====== End Design Feature Area ======-->
+    <!--====== Start Collaboration Area ======-->
+    <!-- pt-148 pb-108 -->
+    <!-- <section class="collaboration-area collaboration-area-v2 border-top" style="padding-top:8%;padding-bottom:8%;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7  d-none d-lg-block">
+                    <div class="app-preview-image text-center text-lg-left content-right-spacer  animate-float-bob-x wow fadeInDown"
+                        data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <img src="{% static 'img/hero/cowork.jpeg' %}" alt="promote your app">
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="section-title section-title-mirage">
+                        <div class="section-heading-tag">
+                            <span class="single-heading-tag">Explore Features</span>
+                        </div>
+                        <h2>Co Workspace <span>Sharing</span></h2>
+                        <div class="section-title-description">
+                            <p class="mb-15">Work at our energetic coworking spaces in Dhaka with other like-minded professionals. These spaces have breakout rooms and networking events to promote collaboration and growth. You can rent a dedicated desk in a shared office or drop in and hot-desk in an open-plan workspace.</p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </section>  -->
+    <!--====== End Collaboration Area ======-->
+    <!--====== Start Our Services Area ======-->
+    <!-- pt-120 pb-100 -->
+    <section class="our-services" style="padding-top:8%;padding-bottom:8%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center mb-120 section-title-mirage">
+                        <div class="section-heading-tag">
+                            <span class="single-heading-tag">{{static_files.last.home_products_heading}}</span>
+                        </div>
+                        <h2>{{static_files.last.convert_to_list.0}}<br>{{static_files.last.convert_to_list.1}}</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">                
+                <div class="col-xl-10"> 
+                    <div class="row">
+                        {% for h in home_products %}
+                        <div class="col-lg-6">  
+                            <div class="single-feature-box single-feature-box-v2 single-feature-box-v2-color-4  wow fadeInUp"
+                                data-wow-delay="0.1s">
+                                <div class="feature-box-icon">
+                                  
+                                    <img src="/{{h.icon}}" alt="{{h.name}}">
+                                </div>
+                                <div class="feature-box-content">
+                                    <h4>{{h.name}}</h4>
+                                    <p>{{h.short_desc}}</p>
+                                </div>
+                            </div>                           
+                        </div>
+                        {% endfor %}
+                        <!-- <div class="col-lg-6">
+                            <div class="single-feature-box single-feature-box-v2 single-feature-box-v2-color-4 wow fadeInUp"
+                                data-wow-delay="0.2s">
+                                <div class="feature-box-icon">
+                                    <img src="{% static 'img/feature/tracker.jpg' %}" alt="Smart Tracker">
+                                
+                                </div>
+                                <div class="feature-box-content">
+                                    <h4>Smart Tracker</h4>
+                                    <p>Smart Tracker helps to plan and control the manufacturing process, from product
+                                        design through production,track production, and delivery to customers.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-lg-6">
+                            <div class="single-feature-box single-feature-box-v2 single-feature-box-v2-color-4 wow fadeInUp"
+                                data-wow-delay="0.3s">
+                                <div class="feature-box-icon">
+                                    <img src="{% static 'img/feature/textile.jpg' %}" alt="Software Development" class="pb-5">
+                                 
+                                </div>
+                                <div class="feature-box-content">
+                                    <h4>Textile</h4>
+                                    <p>Gain the control over planning, production, and quality of your textile order.
+                                        Reduces the gap between designer and manufacturer by addressing the right
+                                        technical specifications</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-lg-6">
+                            <div class="single-feature-box single-feature-box-v2 single-feature-box-v2-color-4 wow fadeInUp"
+                                data-wow-delay="0.4s">
+                                <div class="feature-box-icon">
+                                    <img src="{% static 'img/feature/hr.jpg' %}" alt="Software Development">
+                                </div>
+                                <div class="feature-box-content">
+                                    <h4>HR</h4>
+                                    <p>HR policy management and personal management from recruitment and onboarding to
+                                        payroll, attendance, learning, and employee request management.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    
+                </div>
+                
+            </div> <!-- /.row -->
+            
+        </div> <!-- /.container -->
+    </section> <!-- /.our-services -->
+    <!--====== End Our Services Area ======-->
+
+    <!--====== Start Testimonial Area ======-->
+    <!-- pt-120 pb-100 -->
+
+    <!-- <section class="testimonial-area bg-dark-black" style="padding-top:8%;padding-bottom:8%;">
+        <div class="container">
+            <div class="section-title text-center mb-100 section-title-white section-title-white-v2">
+                <div class="section-heading-tag">
+                    <span class="single-heading-tag bordered-tag text-white">Our Testimonials</span>
+                </div>
+                <h2>What Our Clients Say <br class="d-none d-md-block"> <span>About Us</span></h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="single-testimonial mt-80 single-testimonial-v3 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="single-testimonial-body">
+                                <div class="author-rating">
+                                    <ul class="rating-review">
+                                        <li>
+                                            <div class="all-rating star-5">
+                                                <div class="main-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="blank-rating">
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="testimonial-brand">
+                                        <img src="assets/img/testimonial/esquire.png" style="width:30%;height:30%"
+                                            alt="testimonial brand one">
+                                    </div>
+                                </div>
+                                <p class="author-comments">Sed perspicia unde omnis natuscis error sit volupt accusa
+                                    doloremquey laudantium totam rem aperiam ses eaque quae denouncing</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="assets/img/testimonial/user2.jpg" alt="testimonial author">
+                                <h6>Michael W. Kirwan <span>CEO & founder</span></h6>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="single-testimonial single-testimonial-v3 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="single-testimonial-body">
+                                <div class="author-rating">
+                                    <ul class="rating-review">
+                                        <li>
+                                            <div class="all-rating star-5">
+                                                <div class="main-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="blank-rating">
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="testimonial-brand">
+                                        <img src="assets/img/testimonial/esquire.png" style="width:30%;height:30%"
+                                            alt="testimonial brand two">
+                                    </div>
+                                </div>
+                                <p class="author-comments">Nam libero tempore cum sole nobis eligendi cumque impedite
+                                </p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="assets/img/testimonial/user2.jpg" alt="testimonial author">
+                                <h6>Thomas S. Farrell <span>Web Developer</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </section>  -->
+   
+
+    <div class="brands-area wow fadeInUp" data-wow-delay="00ms" data-wow-duration="2500ms">
+        <div class="container">
+            <div class="section-internal border-bottom pt-75 pb-80">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <div class="brands-content">
+                            <div class="brands-section-title">
+                                <h3><span>{{clients.count}}+</span> Premium Clients</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="brands-slider" id="brands-slider">
+                            {% for c in clients %}
+                            <div class="brands-item px-4" style="padding-left: 8%;padding-right: 8%;">  
+                                <img src="/{{c.icon}}" alt="brand one"  style="padding-left: 8%;padding-right: 8%;">
+                            </div>
+                          {% endfor %}
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.section-internal -->
+        </div> <!-- /.container -->
+    </div> 
+   
+    <!--====== Start Blog & News Area ======-->
+    <!-- pt-120 pb-100 -->
+    <section class="blog-and-news-area bg-magnolia pt-130 pb-100"
+        style="background-image: url({% static 'img/services/dots-pattern-bg.png' %});">
+        <div class="container">
+            <div class="section-internal">
+                <div class="section-particle-effect d-none d-md-block section-particle-effect-v2">
+                    <img class="particle-1 animate-zoom-fade" src="{% static 'img/particle/particle-1.png' %}"
+                        alt="particle One">
+                    <img class="particle-2 animate-rotate-me" src="{% static 'img/particle/particle-2.png' %}"
+                        alt="particle Two">
+                    <img class="particle-3 animate-float-bob-y" src="{% static 'img/particle/particle-3.png' %}"
+                        alt="particle Three">
+                    <img class="particle-4 animate-zoominout" src="{% static 'img/particle/particle-4.png' %}"
+                        alt="particle Four">
+                    <img class="particle-5 animate-zoominout" src="{% static 'img/particle/particle-5.png' %}"
+                        alt="particle Five">
+                    <img class="particle-7 animate-float-bob-x" src="{% static 'img/particle/particle-7.png' %}"
+                        alt="particle Seven">
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="section-title mb-120 section-title-mirage">
+                                    <div class="section-heading-tag">
+                                        <span class="single-heading-tag">Upcoming Events</span>
+                                    </div>
+                                    {% for i in events %}
+                                    <h2>{{i.title}}</span>
+                                    </h2>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-2"></div>
+                            <!-- Single Blog Post -->
+                            {% for e in events %}
+                            <div class="col-lg-9">
+                                <div class="blog-post-item wow fadeInUp" data-wow-delay="200ms"
+                                    data-wow-duration="1500ms">
+                                    <div class="post-thumbnail">
+                                        <a href="{{e.link}}" target="_blank">
+                                            <img src="/{{e.image}}" alt="blog thumbnail twp">
+                                        </a>
+                                        <!-- <div class="post-tag bg-purple">
+                                            <a href="#">Events</a>
+                                        </div> -->
+                                    </div>
+                                    <div class="blog-post-entry-content">
+                                        <div class="post-meta-wrapper">
+                                            <ul>
+                                                <li style="color:blue"><i class="far fa-calendar-alt pr-2"></i>{{e.date}}</li>
+                                                <!-- <li><a href="#" class="post-meta"><i class="fas fa-comment-dots"></i>Com (05)</a></li> -->
+                                            </ul>
+                                        </div>
+                                        <h4 class="post-title" style="color:#f4732a">{{e.short_desc|safe}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="col-lg-1"></div>
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.section-internal -->
+        </div> <!-- /.container -->
+    </section>
+    <!-- /.blog-and-news-area -->
+    <!--====== End Blog & News Area ======-->
+   {% endblock %}
